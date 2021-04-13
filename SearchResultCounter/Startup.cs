@@ -21,6 +21,7 @@ namespace SeoChecker.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMemoryCache();
             services.AddSingleton<ISearchEngine, GoogleEngine>();
             services.AddHttpClient();
         }

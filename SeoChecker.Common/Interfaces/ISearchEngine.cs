@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SeoChecker.Common.Interfaces
 {
     public interface ISearchEngine
     {
         public string Name { get; }
-
-        public Task<IEnumerable<int>> GetPositionsOfUrl(string keyword, string url);
+        public string GetQuery(string keyword, int numResults);
+        public IEnumerable<int> GetPositions(string response, string url);
     }
 }

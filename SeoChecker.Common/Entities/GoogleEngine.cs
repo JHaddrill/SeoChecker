@@ -2,50 +2,41 @@
 using SeoChecker.Common.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
+using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace SeoChecker.Common.Entities
 {
     public class GoogleEngine : ISearchEngine
     {
         private const string _matchingPattern = @"<div class=""ZINbbc xpd O9g5cc uUPGi""><div class=""kCrYT"">.+?\<\/div>";
-
-        private readonly ILogger<GoogleEngine> _logger;
-        private readonly IHttpClientFactory _clientFactory;
-
+        
         public string Name => "Google";
 
-        public GoogleEngine(ILogger<GoogleEngine> logger, IHttpClientFactory clientFactory)
+        private readonly ILogger<GoogleEngine> _logger;
+       
+        public GoogleEngine(ILogger<GoogleEngine> logger)
         {
             _logger = logger;
-            _clientFactory = clientFactory;
         }
 
-
-        public async Task<IEnumerable<int>> GetPositionsOfUrl(string keyword, string url)
+        public string GetQuery(string keyword, int numResults)
         {
-            string httpResult = "";
-            using (var client = _clientFactory.CreateClient())
-            {
-                var result = await client.GetAsync($"https://www.google.com/search?q={keyword}&num=100");
-                if (result.IsSuccessStatusCode)
-                {
-                    httpResult = await result.Content.ReadAsStringAsync();
-                }
-            }
+            return $"https://www.google.com/search?q={keyword}&num={numResults}";
+        }
 
+        public IEnumerable<int> GetPositions(string response, string url)
+        {
             Regex regex = new Regex(_matchingPattern);
-            var searchResults = regex.Matches(httpResult).ToList();
-            
-            var list = searchResults
+            var searchResults = regex.Matches(response).ToList();
+
+            var positions = searchResults
                 .Where(x => x.Value.Contains(url))
                 .Select(x => searchResults.IndexOf(x))
                 .ToList();
 
-            _logger.LogInformation($"Found {list.Count} matches for '{url}' using keyword: '{keyword}'");
-            return list;
+            _logger.LogInformation($"Positions of {url} for {Name}: {JsonSerializer.Serialize(positions)}");
+            return positions;
         }
     }
 }
