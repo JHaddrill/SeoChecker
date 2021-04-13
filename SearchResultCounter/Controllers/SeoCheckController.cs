@@ -12,14 +12,14 @@ namespace SeoChecker.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PositionController : ControllerBase
+    public class SeoCheckController : ControllerBase
     {
-        private readonly ILogger<PositionController> _logger;
+        private readonly ILogger<SeoCheckController> _logger;
         private readonly IMemoryCache _cache;
         private readonly ISearchEngine _searchEngine;
         private readonly IHttpClientFactory _clientFactory;
 
-        public PositionController(ILogger<PositionController> logger, IHttpClientFactory clientFactory, IMemoryCache cache, ISearchEngine searchEngine)
+        public SeoCheckController(ILogger<SeoCheckController> logger, IHttpClientFactory clientFactory, IMemoryCache cache, ISearchEngine searchEngine)
         {
             _logger = logger;
             _clientFactory = clientFactory;
@@ -28,7 +28,7 @@ namespace SeoChecker.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] SeoCheckRequest request)
+        public async Task<IActionResult> GetPositionsForUrl([FromQuery] SeoCheckRequest request)
         {
             string httpResult = string.Empty;
             string query = _searchEngine.GetQuery(request.Keyword, 100); // Update to be config item or request param
