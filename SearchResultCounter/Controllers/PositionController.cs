@@ -1,19 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using SeoChecker.Common.Interfaces;
+using SeoChecker.Common.Models;
 using System.Threading.Tasks;
 
-namespace SearchResultCounter.Controllers
+namespace SeoChecker.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class PositionController : ControllerBase
     {
-        public IActionResult Index()
-        {
+        private readonly ISearchEngine _searchEngine;
 
-            return Ok();
+        public PositionController(ISearchEngine searchEngine)
+        {
+            _searchEngine = searchEngine;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery] SeoCheckRequest request)
+        {
+            var positions = await _searchEngine.GetPositionsOfUrl(request.Keyword, request.Url);
+
+            var res = new SeoCheckResponse
+            {
+                Keyword = request.Keyword,
+                Url = request.Url,
+                SearchEngine = _searchEngine.Name,
+                Positions = positions
+            };
+            return Ok(res);
         }
     }
 }
