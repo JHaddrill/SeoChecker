@@ -25,7 +25,9 @@ namespace SeoChecker.Api
             services.AddMemoryCache();
             services.AddHttpClient();
 
+            services.AddSingleton<IHttpHandler, HttpHandler>();
             services.AddSingleton<ICacheService, CacheService>();
+            services.AddSingleton<ISeoCheckerService, SeoCheckerService>();
             services.AddSingleton<ISearchEngine, GoogleEngine>();
         }
 
