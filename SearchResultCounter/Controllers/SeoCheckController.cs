@@ -15,11 +15,11 @@ namespace SeoChecker.Api.Controllers
     public class SeoCheckController : ControllerBase
     {
         private readonly ILogger<SeoCheckController> _logger;
-        private readonly IMemoryCache _cache;
+        private readonly ICacheService _cache;
         private readonly ISearchEngine _searchEngine;
         private readonly IHttpClientFactory _clientFactory;
 
-        public SeoCheckController(ILogger<SeoCheckController> logger, IHttpClientFactory clientFactory, IMemoryCache cache, ISearchEngine searchEngine)
+        public SeoCheckController(ILogger<SeoCheckController> logger, IHttpClientFactory clientFactory, ICacheService cache, ISearchEngine searchEngine)
         {
             _logger = logger;
             _clientFactory = clientFactory;
@@ -33,8 +33,8 @@ namespace SeoChecker.Api.Controllers
             string httpResult = string.Empty;
             string query = _searchEngine.GetQuery(request.Keyword, 100); // Update to be config item or request param
             
-            _cache.TryGetValue(JsonSerializer.Serialize(request), out SeoCheckResponse response);
-            if (response != null) return Ok(response);
+            var cacheResponse = _cache.Get<SeoCheckResponse>(request);
+            if (cacheResponse != null) return Ok(cacheResponse);
 
             _logger.LogInformation($"Query: {query}");
 
@@ -55,7 +55,7 @@ namespace SeoChecker.Api.Controllers
 
             var positions = _searchEngine.GetPositions(httpResult, request.Url);
 
-            var res = new SeoCheckResponse
+            var response = new SeoCheckResponse
             {
                 Keyword = request.Keyword,
                 Url = request.Url,
@@ -63,11 +63,11 @@ namespace SeoChecker.Api.Controllers
                 Positions = positions
             };
 
-            _logger.LogInformation($"Returned successful response: {JsonSerializer.Serialize(res)}");
+            _logger.LogInformation($"Returned successful response: {JsonSerializer.Serialize(response)}");
             
-            _cache.Set(JsonSerializer.Serialize(request), res, TimeSpan.FromHours(1));
+            _cache.Set(request, response);
 
-            return Ok(res);
+            return Ok(response);
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SeoChecker.Common.Entities;
 using SeoChecker.Common.Interfaces;
+using SeoChecker.Common.Services;
 
 namespace SeoChecker.Api
 {
@@ -22,8 +23,10 @@ namespace SeoChecker.Api
         {
             services.AddControllers();
             services.AddMemoryCache();
-            services.AddSingleton<ISearchEngine, GoogleEngine>();
             services.AddHttpClient();
+
+            services.AddSingleton<ICacheService, CacheService>();
+            services.AddSingleton<ISearchEngine, GoogleEngine>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
