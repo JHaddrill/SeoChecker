@@ -40,8 +40,6 @@ namespace SeoChecker.Common.Services
 
             var response = new SeoCheckResponse
             {
-                Keyword = request.Keyword,
-                Url = request.Url,
                 SearchEngine = searchEngine.Name.ToString(),
                 Positions = positions
             };
