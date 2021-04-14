@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using SeoChecker.Common.Enums;
 using SeoChecker.Common.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace SeoChecker.Common.Entities
     {
         private const string _matchingPattern = @"<div class=""ZINbbc xpd O9g5cc uUPGi""><div class=""kCrYT"">.+?\<\/div>";
         
-        public string Name => "Google";
+        public NamedEngine Name => NamedEngine.Google;
 
         private readonly ILogger<GoogleEngine> _logger;
        
