@@ -17,7 +17,6 @@ namespace SeoChecker.Common.Services
         {
             _logger = logger;
             _memoryCache = cache;
-
             // Make configureable
             DefaultExpiry = TimeSpan.FromMinutes(60);
         }

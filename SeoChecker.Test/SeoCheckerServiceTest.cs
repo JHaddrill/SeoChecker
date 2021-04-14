@@ -11,7 +11,7 @@ using Xunit;
 
 namespace SeoChecker.Test
 {
-    public class SeoCheckerServiceTest
+    public class SeoCheckerServiceTest : TestBase
     {
         protected readonly Mock<ILogger<SeoCheckerService>> MockLogger = new Mock<ILogger<SeoCheckerService>>();
         protected readonly Mock<ICacheService> MockCache = new Mock<ICacheService>();
@@ -25,26 +25,12 @@ namespace SeoChecker.Test
             SeoCheckerService = new SeoCheckerService(GetServiceProvider(), MockLogger.Object, MockCache.Object, MockHttpHandler.Object);
         }
 
-        protected SeoCheckRequest DefaultRequest = new SeoCheckRequest
-        {
-            Keyword = "esettlements",
-            Url = "www.sympli.com.au",
-            SearchEngine = NamedEngine.Google.ToString()
-        };
-
-        protected SeoCheckResponse DefaultResponse = new SeoCheckResponse
-        {
-            SearchEngine = NamedEngine.Google.ToString(),
-            Positions = new List<int>() { 10 }
-        };
-
-
         [Fact]
         public async void GetPositionsForSearchEngine_DoesNotCallSearchEngine_WhenCachedResultIsFound()
         {
-            SetupCacheResult(DefaultResponse);
+            SetupCacheResult(DefaultSeoCheckResponse);
 
-            var result = await SeoCheckerService.GetPositionsForSearchEngine(DefaultRequest);
+            var result = await SeoCheckerService.GetPositionsForSearchEngine(DefaultSeoCheckRequest);
 
             Assert.NotNull(result);
             MockCache.Verify(x => x.Get<SeoCheckResponse>(It.IsAny<SeoCheckRequest>()), Times.Once);
@@ -59,7 +45,7 @@ namespace SeoChecker.Test
             SetupMockHttpHandler();
             SetupCacheResult(null);
 
-            var result = await SeoCheckerService.GetPositionsForSearchEngine(DefaultRequest);
+            var result = await SeoCheckerService.GetPositionsForSearchEngine(DefaultSeoCheckRequest);
 
             Assert.NotNull(result);
             VerifyServicesAreCalled();
@@ -73,7 +59,7 @@ namespace SeoChecker.Test
             MockSearchEngine.SetupGet(x => x.Name).Returns(NamedEngine.Google);
             MockSearchEngine.Setup(x => x.GetPositions(It.IsAny<string>(), It.IsAny<string>())).Returns(new List<int> { 10, 20 });
 
-            var result = await SeoCheckerService.GetPositionsForSearchEngine(DefaultRequest);
+            var result = await SeoCheckerService.GetPositionsForSearchEngine(DefaultSeoCheckRequest);
 
             VerifyServicesAreCalled();
             Assert.Equal(2, result.NumberOfOccurences);
