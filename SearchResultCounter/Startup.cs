@@ -11,6 +11,8 @@ namespace SeoChecker.Api
 {
     public class Startup
     {
+        readonly string AllowReactApp = "allowReactApp";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,6 +26,16 @@ namespace SeoChecker.Api
             services.AddControllers();
             services.AddMemoryCache();
             services.AddHttpClient();
+
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: AllowReactApp,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:3000");
+                                  });
+            });
 
             services.AddSingleton<IHttpHandler, HttpHandler>();
             services.AddSingleton<ICacheService, CacheService>();
@@ -42,6 +54,8 @@ namespace SeoChecker.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(AllowReactApp);
 
             app.UseAuthorization();
 

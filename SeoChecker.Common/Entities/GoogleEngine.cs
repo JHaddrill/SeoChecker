@@ -33,7 +33,7 @@ namespace SeoChecker.Common.Entities
 
             var positions = searchResults
                 .Where(x => x.Value.Contains(url))
-                .Select(x => searchResults.IndexOf(x))
+                .Select(x => searchResults.IndexOf(x) + 1)
                 .ToList();
 
             _logger.LogInformation($"Positions of {url} for {Name}: {JsonSerializer.Serialize(positions)}");
