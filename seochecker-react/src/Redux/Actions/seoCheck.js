@@ -28,9 +28,9 @@ const seoCheckClear = () => ({
 
 
 // Thunks
-export const seoCheck = (keyword, url) => (dispatch) => {
+export const seoCheck = (keyword, url, engine) => (dispatch) => {
 	dispatch(seoCheckRequest());
-	SeoCheckerApi.check(keyword, url)
+	SeoCheckerApi.check(keyword, url, engine)
 		.then((response) => response.json())
 		.then(
 			(data) => {

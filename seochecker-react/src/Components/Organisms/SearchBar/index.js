@@ -6,13 +6,14 @@ import {COLORS} from 'Constants/colours'
 
 const SearchBar = ({seoCheck, isLoading}) => 
 {
-    const [url, setUrl] = useState('');
-    const [keyword, setKeyword] = useState('');
+    const [url, setUrl] = useState('www.sympli.com.au');
+    const [keyword, setKeyword] = useState('esettlements');
+    const [engine, setEngine] = useState('Google');
 
 
     const handleSearchClick = (e) => {
         e.preventDefault();
-        seoCheck(keyword, url);
+        seoCheck(keyword, url, engine);
     };
 
     return (
@@ -27,6 +28,7 @@ const SearchBar = ({seoCheck, isLoading}) =>
                             name='keyword'
                             type="text"
                             onChange={event => setKeyword(event.target.value)}
+                            value={keyword}
                             disabled={isLoading}
                             />
                         </div>
@@ -38,8 +40,22 @@ const SearchBar = ({seoCheck, isLoading}) =>
                             name='url'
                             type="text"
                             onChange={event => setUrl(event.target.value)}
+                            value={url}
                             disabled={isLoading}
                             />
+                        </div>
+                    </div>
+                    <div className='col-md-12'>
+                        <div className='form-group'>
+                            <label>Search Engine</label>
+                            <select className='form-control'
+                                value={engine} 
+                                onChange={event => setEngine(event.target.value)}
+                                disabled={isLoading}
+                            >
+                                <option value ='Google'>Google</option>
+                                <option value ='Bing'>Bing</option>
+                            </select>
                         </div>
                     </div>
                     <div className='col-md-12'>
@@ -60,8 +76,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	seoCheck: (keyword,url) => {
-        dispatch(seoCheck(keyword,url));}
+	seoCheck: (keyword, url, engine) => {
+        dispatch(seoCheck(keyword, url, engine));}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
