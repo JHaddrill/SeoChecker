@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SeoChecker.Common.Interfaces;
 using SeoChecker.Common.Models;
+using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -14,7 +15,7 @@ namespace SeoChecker.Api.Controllers
         private readonly ILogger<SeoCheckController> _logger;
         private readonly ISeoCheckerService _seoCheckerService;
 
-        public SeoCheckController(ILogger<SeoCheckController> logger, ISeoCheckerService seoCheckerService, ICacheService cache)
+        public SeoCheckController(ILogger<SeoCheckController> logger, ISeoCheckerService seoCheckerService)
         {
             _logger = logger;
             _seoCheckerService = seoCheckerService;
@@ -23,13 +24,21 @@ namespace SeoChecker.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPositionsForUrl([FromQuery] SeoCheckRequest request)
         {
-            _logger.LogTrace($"Begin GetPositionsForUrl: {JsonSerializer.Serialize(request)}");
-            
-            var response = await _seoCheckerService.GetPositionsForSearchEngine(request);
+            try
+            {
+                _logger.LogTrace($"Begin GetPositionsForUrl: {JsonSerializer.Serialize(request)}");
 
-            _logger.LogTrace($"End GetPositionsForUrl: {JsonSerializer.Serialize(response)}");
+                var response = await _seoCheckerService.GetPositionsForSearchEngine(request);
 
-            return Ok(response);
+                _logger.LogTrace($"End GetPositionsForUrl: {JsonSerializer.Serialize(response)}");
+
+                return Ok(response);
+            } 
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogTrace($"End GetPositionsForUrl, Invalid input: {ex}");
+                return BadRequest(ex);
+            }
         }
     }
 }
