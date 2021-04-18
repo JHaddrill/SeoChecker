@@ -12,14 +12,12 @@ namespace SeoChecker.Api.Controllers
     public class SeoCheckController : ControllerBase
     {
         private readonly ILogger<SeoCheckController> _logger;
-        private readonly ICacheService _cache;
         private readonly ISeoCheckerService _seoCheckerService;
 
         public SeoCheckController(ILogger<SeoCheckController> logger, ISeoCheckerService seoCheckerService, ICacheService cache)
         {
             _logger = logger;
             _seoCheckerService = seoCheckerService;
-            _cache = cache;
         }
 
         [HttpGet]

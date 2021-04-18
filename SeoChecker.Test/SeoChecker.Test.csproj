@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SearchResultCounter\SeoChecker.Api.csproj" />
+    <ProjectReference Include="..\SeoChecker.Api\SeoChecker.Api.csproj" />
     <ProjectReference Include="..\SeoChecker.Common\SeoChecker.Common.csproj" />
   </ItemGroup>
 
