@@ -12,7 +12,7 @@ class ResultDisplay extends React.PureComponent<SeoCheckStore.SeoCheckState> {
         if (this.props.isLoading) {
             return (
                 <CentredElement>
-                    <Spinner />
+                    <Spinner size='large' />
                 </CentredElement>
             );
         }
