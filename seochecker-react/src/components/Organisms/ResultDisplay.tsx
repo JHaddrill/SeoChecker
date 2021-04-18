@@ -18,6 +18,14 @@ class ResultDisplay extends React.PureComponent<SeoCheckStore.SeoCheckState> {
         else if (this.props.SeoResult) {
             return (<SearchResult SeoResult={this.props.SeoResult} />)
         }
+        else if(this.props.Error) {
+            return (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'red' }}>
+                    <p>An unexpected error occured: {this.props.Error}</p>
+                </div> 
+            )
+
+        }
 
         return (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
