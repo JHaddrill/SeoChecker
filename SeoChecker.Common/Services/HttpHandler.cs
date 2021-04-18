@@ -19,7 +19,7 @@ namespace SeoChecker.Common.Services
         public async Task<string> GetWebpageAsStringAsync(string query)
         {
             string webpage = string.Empty;
-            using (var client = _clientFactory.CreateClient())
+            using (var client = _clientFactory.CreateClient("SeacrhClient"))
             {
                 _logger.LogTrace($"Sending GET Request: {query}");
                 var result = await client.GetAsync(query);

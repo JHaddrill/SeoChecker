@@ -2,6 +2,7 @@
 {
     public enum NamedEngine
     {
-        Google
+        Google,
+        Bing
     }
 }

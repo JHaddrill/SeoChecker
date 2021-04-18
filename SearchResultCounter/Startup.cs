@@ -25,8 +25,9 @@ namespace SeoChecker.Api
         {
             services.AddControllers();
             services.AddMemoryCache();
-            services.AddHttpClient();
-
+            services.AddHttpClient("SeacrhClient", client => {
+                client.DefaultRequestHeaders.Add("User-Agent", "SeoChecker/1.0");
+            });
 
             services.AddCors(options =>
             {
@@ -41,6 +42,7 @@ namespace SeoChecker.Api
             services.AddSingleton<ICacheService, CacheService>();
             services.AddSingleton<ISeoCheckerService, SeoCheckerService>();
             services.AddSingleton<ISearchEngine, GoogleEngine>();
+            services.AddSingleton<ISearchEngine, BingEngine>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
