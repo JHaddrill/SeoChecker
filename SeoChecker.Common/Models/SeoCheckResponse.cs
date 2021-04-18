@@ -9,6 +9,6 @@ namespace SeoChecker.Common.Models
         public string Url { get; set; }
         public string SearchEngine { get; set; }
         public IEnumerable<int> Positions { get; set; }
-        public int NumberOfOccurences => Positions.Count();
+        public int NumberOfOccurrences => Positions.Count();
     }
 }

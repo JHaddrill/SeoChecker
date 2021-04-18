@@ -2,7 +2,7 @@ import * as React from 'react';
 
 type KeyValueProps = {
     Key: string,
-    Value: string
+    Value: any
 }
 
 const KeyValue = (props: KeyValueProps) => (

@@ -4,5 +4,5 @@ export type SeoResult = {
     url: string,
     searchEngine: string,
     positions: number[],
-    numberOfOccurances: number
+    numberOfOccurrences: number
 }

@@ -9,7 +9,6 @@ import SearchResult from '../Molecules/SearchResult';
 class ResultDisplay extends React.PureComponent<SeoCheckStore.SeoCheckState> {
     
     public render() {
-        console.log(this.props.isLoading)
         if (this.props.isLoading) {
             return (
                 <CentredElement>

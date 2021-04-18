@@ -62,7 +62,7 @@ namespace SeoChecker.Test
             var result = await SeoCheckerService.GetPositionsForSearchEngine(DefaultSeoCheckRequest);
 
             VerifyServicesAreCalled();
-            Assert.Equal(2, result.NumberOfOccurences);
+            Assert.Equal(2, result.NumberOfOccurrences);
             Assert.Contains(10, result.Positions);
             Assert.Contains(20, result.Positions);
             Assert.Equal(NamedEngine.Google.ToString(), result.SearchEngine);

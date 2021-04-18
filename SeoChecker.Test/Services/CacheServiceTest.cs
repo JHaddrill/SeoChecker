@@ -30,7 +30,7 @@ namespace SeoChecker.Test
             Assert.NotNull(cachedResult);
             Assert.Equal(DefaultSeoCheckResponse.SearchEngine, cachedResult.SearchEngine);
             Assert.Equal(DefaultSeoCheckResponse.Positions, cachedResult.Positions);
-            Assert.Equal(DefaultSeoCheckResponse.NumberOfOccurences, cachedResult.NumberOfOccurences);
+            Assert.Equal(DefaultSeoCheckResponse.NumberOfOccurrences, cachedResult.NumberOfOccurrences);
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace SeoChecker.Test
             Assert.NotNull(cachedResult);
             Assert.Equal(DefaultSeoCheckResponse.SearchEngine, cachedResult.SearchEngine);
             Assert.Equal(DefaultSeoCheckResponse.Positions, cachedResult.Positions);
-            Assert.Equal(DefaultSeoCheckResponse.NumberOfOccurences, cachedResult.NumberOfOccurences);
+            Assert.Equal(DefaultSeoCheckResponse.NumberOfOccurrences, cachedResult.NumberOfOccurrences);
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace SeoChecker.Test
             Assert.NotNull(cachedResult);
             Assert.Equal(DefaultSeoCheckResponse.SearchEngine, cachedResult.SearchEngine);
             Assert.Equal(DefaultSeoCheckResponse.Positions, cachedResult.Positions);
-            Assert.Equal(DefaultSeoCheckResponse.NumberOfOccurences, cachedResult.NumberOfOccurences);
+            Assert.Equal(DefaultSeoCheckResponse.NumberOfOccurrences, cachedResult.NumberOfOccurrences);
         }
 
         [Fact]
@@ -77,7 +77,7 @@ namespace SeoChecker.Test
             Assert.NotNull(cachedResult);
             Assert.Equal(DefaultSeoCheckResponse.SearchEngine, cachedResult.SearchEngine);
             Assert.Equal(DefaultSeoCheckResponse.Positions, cachedResult.Positions);
-            Assert.Equal(DefaultSeoCheckResponse.NumberOfOccurences, cachedResult.NumberOfOccurences);
+            Assert.Equal(DefaultSeoCheckResponse.NumberOfOccurrences, cachedResult.NumberOfOccurrences);
         }
 
         public IMemoryCache GetMemoryCache()
