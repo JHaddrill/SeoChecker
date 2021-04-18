@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SeoChecker.Test
 {
-    public class TestBase
+    public class ServiceTestBase
     {
         protected SeoCheckRequest DefaultSeoCheckRequest = new SeoCheckRequest
         {

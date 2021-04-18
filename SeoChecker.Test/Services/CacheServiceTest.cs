@@ -9,7 +9,7 @@ using Xunit;
 
 namespace SeoChecker.Test
 {
-    public class CacheServiceTest : TestBase
+    public class CacheServiceTest : ServiceTestBase
     {
         protected Mock<ILogger<CacheService>> MockLogger = new Mock<ILogger<CacheService>>();
 

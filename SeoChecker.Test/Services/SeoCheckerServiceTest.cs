@@ -11,7 +11,7 @@ using Xunit;
 
 namespace SeoChecker.Test
 {
-    public class SeoCheckerServiceTest : TestBase
+    public class SeoCheckerServiceTest : ServiceTestBase
     {
         protected readonly Mock<ILogger<SeoCheckerService>> MockLogger = new Mock<ILogger<SeoCheckerService>>();
         protected readonly Mock<ICacheService> MockCache = new Mock<ICacheService>();

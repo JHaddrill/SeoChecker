@@ -5,7 +5,7 @@ using Xunit;
 
 namespace SeoChecker.Test
 {
-    public abstract class SearchEngineTest : TestBase
+    public abstract class SearchEngineTest
     {
         protected ISearchEngine SearchEngine;
 
