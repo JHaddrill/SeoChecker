@@ -27,7 +27,7 @@ class SearchResult extends React.PureComponent<SearchResultProps> {
                                 <KeyValue Key="Url:" Value={this.props.SeoResult.url} />
                                 <KeyValue Key="Search Engine:" Value={this.props.SeoResult.searchEngine} />
                                 <KeyValue Key="Positions:" Value={this.positions} />
-                                {/* <KeyValue Key="Number of Occurances:" Value={this.props.SeoResult.NumberOfOccurances} /> */}
+                                <KeyValue Key="Number of Occurances:" Value={this.props.SeoResult.numberOfOccurrences} />
                             </tbody>
                         </table>
                     </div>
