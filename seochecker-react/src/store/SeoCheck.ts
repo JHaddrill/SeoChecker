@@ -102,5 +102,8 @@ export const reducer: Reducer<SeoCheckState> = (state: SeoCheckState | undefined
                 Error: ''
             };
         }
+        default:
+            return state;
+
     }
 };

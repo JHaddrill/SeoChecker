@@ -1,3 +1,8 @@
+import Button from 'components/Atoms/Button';
+import LabelledSelect from 'components/Atoms/LabelledSelect';
+import LabelledTextInput from 'components/Atoms/LabelledTextInput';
+import FormattedForm from 'components/Templates/FormattedForm';
+import FullColumn from 'components/Templates/FullColumn';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../store';
@@ -19,56 +24,20 @@ const SearchBar = (props: SearchBarProps) => {
 
     return (
         <React.Fragment>
-            <div className='col-md-12'>
+            <FullColumn>
                 <h2>Search</h2>
-                <form onSubmit={handleSearchClicked}>
-                    <div className='row'>
-                        <div className='col-md-12'>
-                            <div className='form-group'>
-                                <label>Keyword</label>
-                                <input className='form-control'
-                                    name='keyword'
-                                    type="text"
-                                    onChange={event => setKeyword(event.target.value)}
-                                    value={keyword}
-                                    disabled={props.isLoading}
-                                />
-                            </div>
-                        </div>
-                        <div className='col-md-12'>
-                            <div className='form-group'>
-                                <label>Url</label>
-                                <input className='form-control'
-                                    name='url'
-                                    type="text"
-                                    onChange={event => setUrl(event.target.value)}
-                                    value={url}
-                                    disabled={props.isLoading}
-                                />
-                            </div>
-                        </div>
-                        <div className='col-md-12'>
-                            <div className='form-group'>
-                                <label>Search Engine</label>
-                                <select className='form-control'
-                                    value={engine}
-                                    onChange={event => setEngine(event.target.value)}
-                                    disabled={props.isLoading}
-                                >
-                                    <option value='Google'>Google</option>
-                                    <option value='Bing'>Bing</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className='col-md-12'>
-                            <button className="btn btn-primary right"
-                                disabled={props.isLoading}
-                                style={{ backgroundColor: '#18cdb6', borderColor: '#18cdb6' }}>
-                                Search</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                <FormattedForm>
+                    <LabelledTextInput name='Keyword' value={keyword} disabled={props.isLoading}onChange={setKeyword} />
+                    <LabelledTextInput name='Url' value={url} disabled={props.isLoading} onChange={setUrl} />
+                    <LabelledSelect name='Search Engine' value={engine} disabled={props.isLoading} onChange={setEngine}>
+                        <option value='Google'>Google</option>
+                        <option value='Bing'>Bing</option>
+                    </LabelledSelect>
+                    <FullColumn>
+                        <Button label='Search' disabled={props.isLoading} position='right' onClick={handleSearchClicked} />
+                    </FullColumn>
+                </FormattedForm>
+            </FullColumn>
         </React.Fragment>
     );
 }

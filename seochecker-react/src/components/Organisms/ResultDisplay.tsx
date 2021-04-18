@@ -1,3 +1,4 @@
+import CentredElement from 'components/Templates/CentredElement';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../store';
@@ -6,13 +7,14 @@ import Spinner from '../Atoms/Spinner';
 import SearchResult from '../Molecules/SearchResult';
 
 class ResultDisplay extends React.PureComponent<SeoCheckStore.SeoCheckState> {
-
+    
     public render() {
+        console.log(this.props.isLoading)
         if (this.props.isLoading) {
             return (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                <CentredElement>
                     <Spinner />
-                </div>
+                </CentredElement>
             );
         }
         else if (this.props.SeoResult) {
@@ -20,17 +22,15 @@ class ResultDisplay extends React.PureComponent<SeoCheckStore.SeoCheckState> {
         }
         else if(this.props.Error) {
             return (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'red' }}>
+                <CentredElement>
                     <p>An unexpected error occured: {this.props.Error}</p>
-                </div> 
+                </CentredElement>
             )
-
         }
-
         return (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                Results will be shown here
-            </div>
+            <CentredElement>
+                <span>Results will be shown here</span>
+            </CentredElement>
         );
     }
 }
