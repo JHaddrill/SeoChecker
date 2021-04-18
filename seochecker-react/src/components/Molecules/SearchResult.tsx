@@ -13,22 +13,24 @@ class SearchResult extends React.PureComponent<SearchResultProps> {
     public render() {
         return (
             <React.Fragment>
-                <div className='col-md-12' >
-                    <h2>Positions:</h2>
-                    <p style={{ fontSize: '4vw' }}>{this.positions}</p>
-                </div>
+                <div className='col-md-12'>
+                    <div className='col-md-12' >
+                        <h2>Positions:</h2>
+                        <p style={{ fontSize: '4vw' }}>{this.positions}</p>
+                    </div>
 
-                <div className='col-md-12' style={{ borderTop: '1px #ced4da solid', paddingTop: '10px' }}>
-                    <h3>Details:</h3>
-                    <table>
-                        <tbody>
-                            <KeyValue Key="Keyword:" Value={this.props.SeoResult.keyword} />
-                            <KeyValue Key="Url:" Value={this.props.SeoResult.url} />
-                            <KeyValue Key="Search Engine:" Value={this.props.SeoResult.searchEngine} />
-                            <KeyValue Key="Positions:" Value={this.positions} />
-                            {/* <KeyValue Key="Number of Occurances:" Value={this.props.SeoResult.NumberOfOccurances} /> */}
-                        </tbody>
-                    </table>
+                    <div className='col-md-12' style={{ borderTop: '1px #ced4da solid', paddingTop: '10px' }}>
+                        <h3>Details:</h3>
+                        <table>
+                            <tbody>
+                                <KeyValue Key="Keyword:" Value={this.props.SeoResult.keyword} />
+                                <KeyValue Key="Url:" Value={this.props.SeoResult.url} />
+                                <KeyValue Key="Search Engine:" Value={this.props.SeoResult.searchEngine} />
+                                <KeyValue Key="Positions:" Value={this.positions} />
+                                {/* <KeyValue Key="Number of Occurances:" Value={this.props.SeoResult.NumberOfOccurances} /> */}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </React.Fragment>
         );
