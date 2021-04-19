@@ -1,6 +1,6 @@
 import Button from 'components/Atoms/Button';
-import LabelledSelect from 'components/Atoms/LabelledSelect';
-import LabelledTextInput from 'components/Atoms/LabelledTextInput';
+import LabelledSelect from 'components/Molecules/LabelledSelect';
+import LabelledTextInput from 'components/Molecules/LabelledTextInput';
 import FormattedForm from 'components/Templates/FormattedForm';
 import FullColumn from 'components/Templates/FullColumn';
 import React, { useState } from 'react';

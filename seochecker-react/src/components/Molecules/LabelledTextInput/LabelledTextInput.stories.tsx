@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import LabelledTextInput, { LabelledTextInputProps } from '.';
 
 export default {
-  title: 'Atoms/LabelledTextInput',
+  title: 'Molecules/LabelledTextInput',
   component: LabelledTextInput,
   parameters: { actions: { argTypesRegex: '^on.*' } }
 } as Meta;

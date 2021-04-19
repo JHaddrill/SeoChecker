@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import KeyValue, { KeyValueProps } from './';
 
 export default {
-  title: 'Atoms/KeyValue',
+  title: 'Molecules/KeyValue',
   component: KeyValue,
 } as Meta;
 

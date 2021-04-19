@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import LabelledSelect, { LabelledTextInputProps } from '.';
 
 export default {
-  title: 'Atoms/LabelledSelect',
+  title: 'Molecules/LabelledSelect',
   component: LabelledSelect,
   parameters: { actions: { argTypesRegex: '^on.*' } }
 } as Meta;

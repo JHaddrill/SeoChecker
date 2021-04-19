@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SeoResult } from '../../../types/SeoResult';
-import KeyValue from '../../Atoms/KeyValue';
+import KeyValue from '../KeyValue';
 
 export type SearchResultProps = {
     testId: string,
