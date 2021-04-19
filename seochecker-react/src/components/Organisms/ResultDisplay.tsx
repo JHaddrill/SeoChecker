@@ -17,7 +17,7 @@ class ResultDisplay extends React.PureComponent<SeoCheckStore.SeoCheckState> {
             );
         }
         else if (this.props.SeoResult) {
-            return (<SearchResult SeoResult={this.props.SeoResult} />)
+            return (<SearchResult testId='search-result' SeoResult={this.props.SeoResult} />)
         }
         else if(this.props.Error) {
             return (

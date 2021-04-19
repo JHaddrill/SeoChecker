@@ -1,10 +1,10 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
-import Header from '../components/Molecules/Header';
+import Header from '.';
 
 export default {
-  title: 'Example/Header',
+  title: 'Atoms/Header',
   component: Header,
 } as Meta;
 
