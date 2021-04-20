@@ -92,7 +92,7 @@ it('renders correctly', () => {
       test('renders occurances with value', () => {
         render(<SearchResult {...defaultProps}/>)
         expect(screen.getByTestId(`${defaultProps.testId}-num`))
-        .toHaveTextContent(`Number of Occurances:${seo.numberOfOccurrences}`);
+        .toHaveTextContent(`Number of Occurrences:${seo.numberOfOccurrences}`);
       })
    })
  });

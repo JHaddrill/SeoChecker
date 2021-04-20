@@ -43,7 +43,7 @@ namespace SeoChecker.Common.Services
 
             ISearchEngine searchEngine = GetSearchEngine(request.SearchEngine);
 
-            string query = searchEngine.GetQuery(request.Keyword, _maxResults); // Update to be config item or request param
+            string query = searchEngine.GetQuery(request.Keyword, _maxResults);
 
             var httpResult = await _httpHandler.GetWebpageAsStringAsync(query);
 
