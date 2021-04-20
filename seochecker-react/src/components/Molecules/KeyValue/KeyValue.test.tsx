@@ -10,24 +10,26 @@ const props: KeyValueProps = {
    Value: "Value"
 }
 
+const component = <table><tbody><KeyValue {...props} /></tbody></table>
+
 it('renders correctly', () => {
-   const tree = renderer.create(<KeyValue {...props} />).toJSON();
+   const tree = renderer.create(component).toJSON();
    expect(tree).toMatchSnapshot();
  });
  
  describe('KeyValue', () => {
    test('renders', () => {
-     render(<tbody><KeyValue {...props} /></tbody>)
+     render(component)
      expect(screen.getByTestId('KeyValueId')).toBeInTheDocument();
    })
 
    test('renders with key', () => {
-      render(<tbody><KeyValue {...props} /></tbody>)
+      render(component)
       expect(screen.getByTestId('KeyValueId-key').textContent).toBe(props.Key);
    })
 
    test('renders with value', () => {
-      render(<tbody><KeyValue {...props} /></tbody>)
+      render(component)
       expect(screen.getByTestId('KeyValueId-value').textContent).toBe(props.Value);
    })
  });

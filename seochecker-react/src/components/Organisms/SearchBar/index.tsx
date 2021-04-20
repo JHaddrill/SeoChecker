@@ -5,10 +5,10 @@ import FormattedForm from 'components/Templates/FormattedForm';
 import FullColumn from 'components/Templates/FullColumn';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { ApplicationState } from '../../store';
-import * as SeoCheckStore from '../../store/SeoCheck';
+import { ApplicationState } from '../../../store';
+import * as SeoCheckStore from '../../../store/SeoCheck';
 
-type SearchBarProps =
+export type SearchBarProps = 
     SeoCheckStore.SeoCheckState
     & typeof SeoCheckStore.actionCreators
 
@@ -23,7 +23,7 @@ const SearchBar = (props: SearchBarProps) => {
     };
 
     return (
-        <React.Fragment>
+        <div data-testid='search-bar'>
             <FullColumn>
                 <h2>Search</h2>
                 <FormattedForm>
@@ -38,9 +38,9 @@ const SearchBar = (props: SearchBarProps) => {
                     </FullColumn>
                 </FormattedForm>
             </FullColumn>
-        </React.Fragment>
+        </div>
     );
 }
 
 export default connect(
-    (state: ApplicationState) => state.seoCheck, SeoCheckStore.actionCreators)(SearchBar as any);
+    (state: ApplicationState) => ({...state.seoCheck}), SeoCheckStore.actionCreators)(SearchBar as any);

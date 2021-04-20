@@ -11,7 +11,7 @@ it('renders correctly', () => {
  
  describe('Header', () => {
    test('renders', () => {
-     render(<tbody><Header /></tbody>)
+     render(<Header />)
      expect(screen.getByTestId('header')).toBeInTheDocument();
    })
  });
