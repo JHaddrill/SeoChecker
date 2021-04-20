@@ -4,7 +4,7 @@ The aim of this project is to be able to retrieve a given domain's (e.g. www.sym
 The solution was split into two sections:
 1. .NET Core 3.1 WebAPI which would be the main driver and handle 
     - Sending requests to the search engines
-    - Parsing the resposne to extract search results
+    - Parsing the response to extract search results
     - Returning a formatted repsonse acceptable to the Front End application
 2. React Single Page Application
     - A client of the API
@@ -13,7 +13,8 @@ The solution was split into two sections:
 # Assumptions
 - The use of Third-Party APIs and Libraries are not to be used in the API
 - Other values can be provided for `keyword` and `url`
-- Only need to retrieve the top 100 results
+- Request and Response can contain additonal fields
+- Only need to retrieve the top 100 results for Google, not for other engines (Bing returns a maximum of 50 entries)
 
 # Installation
 First we need to retrieve the code, Either:
@@ -21,7 +22,7 @@ First we need to retrieve the code, Either:
  2. Download the zip of the project and extract it into a new directory
 
 ## Run Script
-The script will attempt to build adn run both the API and the React app
+The script will attempt to build and run both the API and the React app
 1. Naviagte to SeoChecker
 2. Run `startApp.bat`
 
@@ -37,7 +38,8 @@ To run the API build independently
     - Run SeoChecker.Api from the toolbar
 
 ### React App
-1. Naviagte to directory SeoChecker/seochecker-react
+1. Navigate to directory SeoChecker/seochecker-react
 2. Run ```npm install```
 3. Run ```npm start```
-4. Navigate to localhost:3000 (if not opened automatically )
+4. Navigate to localhost:3000 (if not opened automatically)
+#
