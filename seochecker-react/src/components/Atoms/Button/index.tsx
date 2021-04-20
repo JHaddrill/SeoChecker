@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-type ButtonProps = {
+export type ButtonProps = {
+    testId: string,
     label: string
-    disabled: boolean,
+    disabled?: boolean,
     position?: 'left' | 'right',
     onClick?: (e: React.SyntheticEvent) => void
 }
@@ -14,7 +15,7 @@ const Button = (props: ButtonProps) =>  {
     : "btn btn-primary";
 
     return (
-        <button className={btnClass} disabled={props.disabled} onClick={props.onClick} style={{ backgroundColor: '#18cdb6', borderColor: '#18cdb6' }}>{props.label}</button>
+        <button data-testid={props.testId} className={btnClass} disabled={props.disabled} onClick={props.onClick} style={{ backgroundColor: '#18cdb6', borderColor: '#18cdb6' }}>{props.label}</button>
     )
 };
 

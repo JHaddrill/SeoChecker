@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../Molecules/Header';
+import Header from '../Atoms/Header';
 
 const PageTemplate = (props: { children?: React.ReactNode }) => (
 	<React.Fragment>
