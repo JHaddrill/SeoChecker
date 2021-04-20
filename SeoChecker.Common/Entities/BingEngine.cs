@@ -3,6 +3,9 @@ using SeoChecker.Common.Interfaces;
 
 namespace SeoChecker.Common.Entities
 {
+    /// <summary>
+    /// Representation of the Bing Search engine
+    /// </summary>
     public class BingEngine : ISearchEngine
     {
         public NamedEngine Name => NamedEngine.Bing;

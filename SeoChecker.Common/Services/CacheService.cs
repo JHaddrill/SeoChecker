@@ -1,24 +1,34 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using SeoChecker.Common.Constants;
+using SeoChecker.Common.Extensions;
 using SeoChecker.Common.Interfaces;
 using System;
 using System.Text.Json;
 
 namespace SeoChecker.Common.Services
 {
+    /// <summary>
+    /// Concrete implementation of <see cref="ICacheService"/>
+    /// Handles request/resposne caching for the application.
+    /// </summary>
     public class CacheService : ICacheService
     {
+        private const int _defaultExpiry = 60;
+
         private readonly ILogger<CacheService> _logger;
         private readonly IMemoryCache _memoryCache;
 
         public TimeSpan DefaultExpiry { get; set; } 
 
-        public CacheService(ILogger<CacheService> logger, IMemoryCache cache)
+        public CacheService(IConfiguration config, ILogger<CacheService> logger, IMemoryCache cache)
         {
             _logger = logger;
             _memoryCache = cache;
-            // Make configureable
-            DefaultExpiry = TimeSpan.FromMinutes(60);
+            
+            int expiryMinutes = config.GetIntOrDefault(ConfigKeys.CacheExpiry, _defaultExpiry);
+            DefaultExpiry = TimeSpan.FromMinutes(expiryMinutes);
         }
 
         public T Get<T>(object request)

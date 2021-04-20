@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace SeoChecker.Common.Models
 {
+    /// <summary>
+    /// Request Model of SEO Check
+    /// </summary>
     public class SeoCheckResponse
     {
         public string Keyword { get; set; }

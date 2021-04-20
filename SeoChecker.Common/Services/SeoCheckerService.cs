@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SeoChecker.Common.Constants;
 using SeoChecker.Common.Enums;
+using SeoChecker.Common.Extensions;
 using SeoChecker.Common.Interfaces;
 using SeoChecker.Common.Models;
 using System;
@@ -10,6 +13,10 @@ using System.Threading.Tasks;
 
 namespace SeoChecker.Common.Services
 {
+    /// <summary>
+    /// Concrete implementation of <see cref="ISeoCheckerService"/>
+    /// Orchestrates the SEO check
+    /// </summary>
     public class SeoCheckerService : ISeoCheckerService
     {
         private readonly ILogger<SeoCheckerService> _logger;
@@ -17,12 +24,16 @@ namespace SeoChecker.Common.Services
         private readonly IHttpHandler _httpHandler;
         private readonly ICacheService _cache;
 
-        public SeoCheckerService(IServiceProvider provider, ILogger<SeoCheckerService> logger, ICacheService cache, IHttpHandler httpHandler)
+        private int _maxResults;
+        private const int _defaultMaxResults = 100;
+
+        public SeoCheckerService(IConfiguration config, ILogger<SeoCheckerService> logger, IServiceProvider provider, ICacheService cache, IHttpHandler httpHandler)
         {
             _logger = logger;
             _cache = cache;
             _httpHandler = httpHandler;
             _serviceProvider = provider;
+            _maxResults = config.GetIntOrDefault(ConfigKeys.MaxResults, _defaultMaxResults);
         }
 
         public async Task<SeoCheckResponse> GetPositionsForSearchEngine(SeoCheckRequest request)
@@ -32,7 +43,7 @@ namespace SeoChecker.Common.Services
 
             ISearchEngine searchEngine = GetSearchEngine(request.SearchEngine);
 
-            string query = searchEngine.GetQuery(request.Keyword, 100); // Update to be config item or request param
+            string query = searchEngine.GetQuery(request.Keyword, _maxResults); // Update to be config item or request param
 
             var httpResult = await _httpHandler.GetWebpageAsStringAsync(query);
 

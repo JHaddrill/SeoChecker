@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace SeoChecker.Common.Services
 {
+    /// <summary>
+    /// Concrete implementation of <see cref="IHttpHandler"/>
+    /// Retrieves webpages via HTTP
+    /// </summary>
     public class HttpHandler : IHttpHandler
     {
         private readonly ILogger<HttpHandler> _logger;

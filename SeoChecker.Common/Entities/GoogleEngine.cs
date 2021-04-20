@@ -3,6 +3,9 @@ using SeoChecker.Common.Interfaces;
 
 namespace SeoChecker.Common.Entities
 {
+    /// <summary>
+    /// Representation of the Google Search engine
+    /// </summary>
     public class GoogleEngine : ISearchEngine
     {       
         public NamedEngine Name => NamedEngine.Google;
