@@ -11,7 +11,7 @@ namespace SeoChecker.Common.Services
 {
     /// <summary>
     /// Concrete implementation of <see cref="ICacheService"/>
-    /// Handles request/resposne caching for the application.
+    /// Handles request/response caching for the application.
     /// </summary>
     public class CacheService : ICacheService
     {

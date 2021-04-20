@@ -94,10 +94,10 @@ namespace SeoChecker.Test
                 .ReturnsAsync(response);
         }
 
-        private void SetupCacheResult(SeoCheckResponse resposne)
+        private void SetupCacheResult(SeoCheckResponse response)
         {
             MockCache.Setup(x => x.Get<SeoCheckResponse>(It.IsAny<SeoCheckRequest>()))
-                .Returns(resposne);
+                .Returns(response);
         }
 
         private IServiceProvider GetServiceProvider()
